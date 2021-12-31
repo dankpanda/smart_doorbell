@@ -8,7 +8,7 @@ from gpiozero import Button
 
 # Variables
 button_GPIO = 16
-meeting_duration = 20 # in seconds
+meeting_duration = 60 # in seconds
 
 class Doorbell:
     def __init__(self, button_gpio):
@@ -26,7 +26,7 @@ class Doorbell:
     def _start_video_call(self):
         meeting_id = str(uuid.uuid4())
         meeting_link = "http://meet.jit.si/{}#config.prejoinPageEnabled=false".format(meeting_id)
-        process = subprocess.Popen(["chromium","-kiosk", meeting_link])
+        process = subprocess.Popen(["chromium", "-kiosk",meeting_link])
         time.sleep(meeting_duration)
         self._end_video_call(process)
 
